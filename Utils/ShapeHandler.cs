@@ -23,7 +23,6 @@ namespace Hello.Utils
                 throw new ArgumentException("shapefilePath is required", nameof(shapefilePath));
 
             var table = new ShapefileFeatureTable(shapefilePath);
-            Console.WriteLine(table);
             await table.LoadAsync().ConfigureAwait(false);
             
             var feature = table.CreateFeature();
@@ -55,9 +54,9 @@ namespace Hello.Utils
                 throw new ArgumentException("shapefilePath is required", nameof(shapefilePath));
 
             var table = new ShapefileFeatureTable(shapefilePath);
-            Console.WriteLine(table);
+          
             await table.LoadAsync().ConfigureAwait(false);
-
+            Console.WriteLine($"table's extent before adding a polygon:{table.Extent}");
             var feature = table.CreateFeature();
 
             //SpatialReference sr = table.SpatialReference ?? SpatialReferences.Wgs84;
@@ -74,11 +73,9 @@ namespace Hello.Utils
                     }
                 }
             }
-
+            Console.WriteLine($"polygon's extent ${polygon.Extent}");
             await table.AddFeatureAsync(feature).ConfigureAwait(false);
-            Console.WriteLine("add feature");
-            Console.WriteLine(table.GetField("level").FieldType);
-
+            Console.WriteLine($"table's extent after adding the polygon:{table.Extent}");
             table.Close();
         }
 
