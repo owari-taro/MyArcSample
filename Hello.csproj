@@ -1,14 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <!--
-  Plan (疑似コード / 手順):
-  1. MSBuild の属性内でセミコロンを直接書くと解釈される場合があるため、
-     URL エンコードの %3b は期待どおり出力されないことがある。
-  2. XML の数値文字参照（&#59; または &#x3B;）を使うと、XML パーサによって
-     セミコロンに展開され、WriteLinesToFile が正しく ';' を出力する。
-  3. Hello.csproj の WriteLinesToFile の Lines 属性内の %3b を &#59; に置き換える。
-  4. プロジェクト全体を保存し、ビルドして生成された Config/License.cs に
-     セミコロンが含まれていることを確認する。
-  -->
+
 
  
 
@@ -24,13 +15,13 @@
    <Platforms>AnyCPU;x64;x64</Platforms>
 
   </PropertyGroup>
- 
-	<Target Name="GenerateLicense" BeforeTargets="BeforeCompile">
+
+	<!--Target Name="GenerateLicense" BeforeTargets="BeforeCompile">
     <WriteLinesToFile File="License.cs" Lines="namespace Hello { public static class LicenseString { public const string Key = &quot;$(LICENSE_KEY)&quot;%3b } }" Overwrite="true" />
     <ItemGroup>
       <Compile Include="License.cs" />
     </ItemGroup>
-  </Target>
+  </Target-->
   <ItemGroup>
     <PackageReference Include="Esri.ArcGISRuntime" Version="200.8.0" />
   </ItemGroup>
