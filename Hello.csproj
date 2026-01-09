@@ -18,6 +18,11 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <DefaultItemExcludes>$(DefaultItemExcludes);tests\**\*;tests/**\*</DefaultItemExcludes>
+    <PublishSingleFile>true</PublishSingleFile>
+    <SelfContained>true</SelfContained>
+   <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
+   <Platforms>AnyCPU;x64;x64</Platforms>
+
   </PropertyGroup>
  
 	<Target Name="GenerateLicense" BeforeTargets="BeforeCompile">
@@ -30,12 +35,6 @@
     <PackageReference Include="Esri.ArcGISRuntime" Version="200.8.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Compile Remove="tests\**\*.cs" />
-    <Compile Remove="tests/**/**/*.cs" />
-    <Compile Remove="tests/Hello.Tests/UtilsTests.cs" />
-    <None Remove="tests\**\*.*" />
-  </ItemGroup>
 
   <!-- Copy shapefile components from the data folder to output and publish directories -->
   <ItemGroup>
